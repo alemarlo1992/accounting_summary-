@@ -14,9 +14,21 @@ def underpaid_melons(path):
 
   for line in file: 
 
-      if customer_expected != customer_paid:
+    line = line.rstrip()
+
+    line = line.split('|')
+
+    customer_name = line[1]
+    customer_melons_str = line[2]
+    customer_melons = int(customer_melons_str)
+    customer_paid = line[3]
+
+    customer_expected = customer_melons * melon_cost
+
+    if customer_expected != customer_paid:
 
       print("{} paid ${},expected ${}".format(customer_name, customer_paid, 
             customer_expected)
             )
 
+underpaid_melons('customer-orders.txt')
